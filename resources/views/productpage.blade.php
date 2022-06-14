@@ -48,9 +48,9 @@
    </div>
          
        </div>
-       <p class="p-name">{{$detail['currency']}} {{ $detail['price']-$detail['product_discount']}}.00 
-       @if($detail['product_discount'] )
-        <span class="text-danger">{{$detail['currency']}}<del>{{$detail['price']}}.00</del></span>@endif</p>
+       <p class="p-name"> @if($detail['product_discount'] ) {{$detail['currency']}} {{ $detail['product_discount']}}.00 
+       
+        <span class="text-danger">{{$detail['currency']}} <del>{{$detail['price']}}.00</del></span>@else {{$detail['currency']}}  {{$detail['price']}} @endif</p>
      
 
        @if($detail['detail'])
@@ -348,7 +348,7 @@
         <div class="col-md-6">
 
         <div class=" border">
-       <p class=" mt-2 ">SubTotal:<span class="float-right"> {{$detail['price']-$detail['product_discount'] }}</span></p>
+       <p class=" mt-2 ">SubTotal:<span class="float-right"> {{$detail['product_discount']-$detail['discount'] }}</span></p>
        <p class=" mt-2 ">Shiping Cost:<span class="float-right" id="shipping_cost2"> </span></p>
        <h6 class=" mt-2 ">Grand Total:<span class="float-right" id="grand_total2"> </span></h6>
        </div>
@@ -367,7 +367,7 @@
            <p class="overlayi mb-0">{{ucwords($detail['name'])}}</p>
            <p class="mb-0 ">Color: <span id="color_show"></span> <span class="float-right">Size: <span id="size_show"></span></span></p>
            <p class="mb-0 "></p>
-           <p class=" mb-0">{{$detail['currency']}}: {{ucwords($detail['price']-$detail['product_discount'])}} <span class="float-right">
+           <p class=" mb-0">{{$detail['currency']}}: {{ucwords($detail['product_discount']-$detail['discount'])}} <span class="float-right">
            <p class=" mb-0 d-flex">
             <button class="btn btn-xs btn-info" type="button" id="minus">-</button><input type="number" value="1" name="quentity" class="form-control w-50" id="quentity" data-stock="{{$detail['total']}}"><button class="btn btn-xs btn-info" type="button" id="add">+</button></p>
            
@@ -378,7 +378,7 @@
           </div>
           <input type="hidden" name="product_id[]" value="{{$detail['id']}}">
             <input type="hidden" name="product[]" value="{{$detail['name']}}">
-            <input type="hidden" name="price[]" value="{{$detail['price']-$detail['product_discount']}}">
+            <input type="hidden" name="price[]" value="{{$detail['product_discount']}}">
              @foreach($images as $d)
               @if($loop->first)
                <input type="hidden" name="image[]" class="image" value="{{ $d['rimage']}}">
@@ -389,8 +389,8 @@
                    <input type="hidden" name="detail[]" value="{{ $detail['detail']}}">
                    <input type="hidden" name="color[]" id="buy_now_color">
                    <input type="hidden" name="size[]" id="buy_now_size">
-                   <input type="hidden" id="total2" value="{{$detail['price']-$detail['product_discount']}}">
-                   <input type="hidden" name="total" id="total_input2" value="{{$detail['price']-$detail['product_discount']}}">
+                   <input type="hidden" id="total2" value="{{$detail['product_discount']}}">
+                   <input type="hidden" name="total" id="total_input2" value="{{$detail['product_discount']-$detail['discount']}}">
                   
       </div>
      
@@ -488,6 +488,7 @@ $(".add-to-cart").click(function (e) {
            $.each(res.cart,function(index,value){
           
              ph = baseURL + "uploads/img/" + value.image;
+            
             $('#cart_modal_data').append(`
                
                <div class="row mt-3 afdf">

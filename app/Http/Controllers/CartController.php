@@ -52,14 +52,16 @@ class CartController extends Controller
        
         if(isset($cart[$id])) {
            
-            $quen=$cart[$id]['quantity']++;
-            $cart[$id]['price']*$quen;
-            if($product['total'] > $quen)
-            {
+            $cart[$id]['quantity']=$cart[$id]['quantity']+1;
+     
+           $cart[$id]['price']=($product->product_discount - $product->discount)* $cart[$id]['quantity'];
+        
+            // if($product['total'] > $quen)
+            // {
                
-            }else{
-                $cart[$id]['quantity']--;
-            }
+            // }else{
+            //     $cart[$id]['quantity']--;
+            // }
             
         } else {
 
@@ -68,7 +70,7 @@ class CartController extends Controller
                 "name" => $product['name'],
                 "stock" => $product['total'],
                 "quantity" => 1,
-                "price" => $product->price - $product->product_discount,
+                "price" => $product->product_discount - $product->discount,
                 "currency" => $product->currency,
                 "image" => $req->image,
                 "color" => $req->color,

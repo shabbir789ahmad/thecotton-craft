@@ -347,7 +347,7 @@ $('#myCarousel').carousel({
 <script>
 
         var baseURL = "{{ url("") }}" + "/";
-
+     
     </script>
 @section('script')
 @show

@@ -198,7 +198,7 @@ class SliderController extends Controller
      
      if($id==1)
      {
-      $query=$query->whereMonth('products.created_at',Carbon::now()->month) ->orderBy('rating','DESC')->where('products.product_category','=','new');
+      $query=$query->where('products.product_category','new') ->orderBy('rating','DESC');
      }
 
      if($id==2)

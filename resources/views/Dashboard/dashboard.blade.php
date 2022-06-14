@@ -242,7 +242,7 @@
 
         var data = google.visualization.arrayToDataTable([
           ['Task', 'product pr sell'],
-          <?php echo $chartdata ?>
+          <?php echo $chartdata2 ?>
         ]);
 
         var options = {

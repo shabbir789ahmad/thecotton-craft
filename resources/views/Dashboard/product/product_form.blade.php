@@ -54,8 +54,8 @@
     <label class="font-weight-bold">Select Category<span class="text-danger">*</span></label>
     <select class="form-control select border-secondary" id="main2" name="cat_id" required="">
       <option disabled selected hidden> Select  Category</option>
-         @foreach($main as $key=> $mc)
-       <option value="{{$key}}">{{ucfirst($mc['category'])}}</option>
+         @foreach($main as  $mc)
+       <option value="{{$mc['id']}}">{{ucfirst($mc['category'])}}</option>
      @endforeach
     </select> 
     <span class="text-danger">@error('cat_id') Main Category Field is required @enderror</span>

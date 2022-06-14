@@ -17,7 +17,7 @@ class CategoryController extends Controller
     {
         $subcategory =Submenue::where('menue_id',$id)->get();
 
-       return view('allcategory',compact('subcategory'));
+       return view('allcategory2',compact('subcategory'));
     }
 
     function getCat()

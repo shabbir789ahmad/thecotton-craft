@@ -11,19 +11,17 @@
 
 <div class="row mt-5 ">
 
- @forelse($subcategory as $category)
-   @if($category['menue_id']==5)
-   @if($loop->first)
-   <x-messagecomponent message="Category Not Found" />
-   @endif
-   @else
+ @forelse($submenues as $category)
+ 
+ 
+ 
  <div class="col-md-3 mt-3">
  	<!-- from category component -->
  	<x-subcategorycomponent :category="$category"/>
 
 
 </div>
-@endif
+
 @empty
    <x-messagecomponent message="Category Not Found" />
   @endforelse

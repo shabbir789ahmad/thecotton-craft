@@ -30,7 +30,7 @@
              <span class="fa fa-star"></span> 
             @endif
           @endfor</p>
-           <p class="ml-auto m-0 mr-3">{{$product['currency']}} {{$product['price']- $product['product_discount']}} @if($product['product_discount']) <span class="text-danger"><del>{{$product['currency']}} {{ $product['price']}}</del></span>@endif</p>
+           <p class="ml-auto m-0 mr-3">{{$product['currency']}}   @if($product['product_discount'])  {{$product['product_discount']}} <span class="text-danger"><del>{{$product['currency']}} {{ $product['price']}}</del></span>@else {{ $product['price']}} @endif</p>
        </div>
       </div>
      </div>
